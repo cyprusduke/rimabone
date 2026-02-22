@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B1 Verbs</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+
+    <header class="app-header">
+      <h1 class="app-title">B1 Verbs</h1>
+    </header>
+
+    <div class="filters-row">
+      <section class="filters">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="unlearned">Неизученные</button>
+        <button class="filter-btn" data-filter="learned">Изученные</button>
+      </section>
+      <button id="listBtn" class="ctrl-btn ctrl-list-toggle" type="button" aria-label="Список глаголов">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="progress-wrap">
+      <span id="progress" class="progress-text">0 / 0</span>
+      <div class="progress-track">
+        <div id="progressBar" class="progress-fill"></div>
+      </div>
+    </div>
+
+    <article id="card" class="card" aria-live="polite">
+      <div id="learnedBadge" class="learned-badge hidden">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Изучено
+      </div>
+      <div class="card-inner" id="cardInner">
+
+        <div class="card-face card-face--front">
+          <span class="face-label"></span>
+          <p id="frontText" class="word">…</p>
+          <span class="flip-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10"/><path d="M3.51 15a9 9 0 0 0 14.85 3.36L23 14"/></svg>
+            нажмите чтобы перевернуть
+          </span>
+        </div>
+
+        <div class="card-face card-face--back">
+          <span class="face-label">Формы и перевод</span>
+          <ul class="forms-list">
+            <li>
+              <span class="form-key">Present</span>
+              <span id="present" class="form-val"></span>
+            </li>
+            <li>
+              <span class="form-key">Aorist</span>
+              <span id="aorist" class="form-val"></span>
+            </li>
+            <li>
+              <span class="form-key">Future</span>
+              <span id="future" class="form-val"></span>
+            </li>
+            <li>
+              <span class="form-key">Imperative</span>
+              <span id="imperative" class="form-val"></span>
+            </li>
+            <li class="translation-row">
+              <span class="form-key">Перевод</span>
+              <span id="translation" class="form-val translation-val"></span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </article>
+
+    <div class="controls">
+      <button id="prevBtn" class="ctrl-btn ctrl-nav" type="button" aria-label="Назад">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+
+      <div class="controls-center">
+        <button id="shuffleBtn" type="button" class="ctrl-btn ctrl-shuffle">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+          Перемешать
+        </button>
+        <button id="revealBtn" type="button" class="ctrl-btn ctrl-reveal">Показать ответ</button>
+        <button id="learnedBtn" type="button" class="ctrl-btn ctrl-learned">Изучено</button>
+      </div>
+
+      <button id="nextBtn" class="ctrl-btn ctrl-nav" type="button" aria-label="Вперёд">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+  </main>
+
+  <div id="verbListBackdrop" class="verb-list-backdrop hidden"></div>
+  <aside id="verbListPanel" class="verb-list-panel hidden">
+    <div class="verb-list-header">
+      <span class="verb-list-title">Все глаголы</span>
+      <button id="verbListClose" class="verb-list-close" type="button" aria-label="Закрыть">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="verb-list-search-wrap">
+      <svg class="verb-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="verbSearch" class="verb-search" type="text" placeholder="Поиск…" autocomplete="off" spellcheck="false">
+    </div>
+    <div id="verbListGrid" class="verb-list-grid"></div>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
