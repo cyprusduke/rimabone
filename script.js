@@ -211,7 +211,7 @@ function render() {
     } else {
       learnedBtn.classList.remove('btn--reset');
       learnedBtn.classList.add('btn--learned');
-      learnedBtn.textContent = '✓ Изучено';
+      learnedBtn.textContent = 'Изучено';
     }
   } else {
     learnedBadge.classList.add('hidden');
