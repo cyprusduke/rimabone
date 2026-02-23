@@ -530,6 +530,40 @@ body {
   font-size: 2rem;
 }
 
+/* ---- Speak button (front face) ---- */
+.speak-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.12s var(--ease-spring);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.speak-btn:hover {
+  background: var(--glass-hover);
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+.speak-btn:active {
+  transform: scale(0.93);
+}
+
+.speak-btn.speaking {
+  color: var(--accent);
+  border-color: rgba(129, 140, 248, 0.45);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
 /* ---- Learned badge (top-right of article) ---- */
 .learned-badge {
   position: absolute;

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo none found:*)",
+      "Bash(python:*)",
+      "Bash(sleep 1:*)",
+      "Bash(sleep 2:*)"
+    ]
+  }
+}

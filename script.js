@@ -24,12 +24,34 @@ const nextBtn       = document.getElementById('nextBtn');
 const revealBtn     = document.getElementById('revealBtn');
 const shuffleBtn    = document.getElementById('shuffleBtn');
 const learnedBtn    = document.getElementById('learnedBtn');
+const speakBtn         = document.getElementById('speakBtn');
 const listBtn          = document.getElementById('listBtn');
 const verbListPanel    = document.getElementById('verbListPanel');
 const verbListBackdrop = document.getElementById('verbListBackdrop');
 const verbListGrid     = document.getElementById('verbListGrid');
 const verbSearch       = document.getElementById('verbSearch');
 const filterBtns    = document.querySelectorAll('.filter-btn');
+
+// ---------- Speech ----------
+
+let currentAudio = null;
+
+function speak(text) {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+    speakBtn.classList.remove('speaking');
+  }
+
+  const url = `/tts?q=${encodeURIComponent(text)}`;
+  const audio = new Audio(url);
+  currentAudio = audio;
+
+  speakBtn.classList.add('speaking');
+  audio.onended = () => { speakBtn.classList.remove('speaking'); currentAudio = null; };
+  audio.onerror = () => { speakBtn.classList.remove('speaking'); currentAudio = null; };
+  audio.play().catch(() => { speakBtn.classList.remove('speaking'); currentAudio = null; });
+}
 
 // ---------- localStorage ----------
 
@@ -317,6 +339,12 @@ cardEl.addEventListener('click', (e) => {
   toggleReveal();
 });
 
+speakBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (!state.displayCards.length) return;
+  speak(state.displayCards[state.index].present);
+});
+
 learnedBtn.addEventListener('click', toggleLearned);
 shuffleBtn.addEventListener('click', shuffleCards);
 
@@ -347,6 +375,10 @@ document.addEventListener('keydown', (e) => {
     case 'l':
     case 'L':
       toggleLearned();
+      break;
+    case 's':
+    case 'S':
+      if (state.displayCards.length) speak(state.displayCards[state.index].present);
       break;
   }
 });
