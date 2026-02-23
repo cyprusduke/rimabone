@@ -173,7 +173,7 @@ function render() {
   const learnedCount = state.learned.size;
 
   document.querySelector('[data-filter="learned"]').textContent =
-    learnedCount ? `Изученные (${learnedCount})` : 'Изученные';
+    learnedCount ? `Повторять (${learnedCount})` : 'Повторять';
 
   if (!verbListPanel.classList.contains('hidden')) renderVerbList();
 
