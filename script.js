@@ -182,7 +182,7 @@ function render() {
     learnedBadge.classList.add('hidden');
     cardEl.classList.remove('card--learned');
     learnedBtn.classList.remove('btn--learned');
-    learnedBtn.textContent = 'Изучено';
+    learnedBtn.textContent = 'Знаю';
     return;
   }
 
@@ -207,17 +207,17 @@ function render() {
     if (state.filter === 'learned') {
       learnedBtn.classList.remove('btn--learned');
       learnedBtn.classList.add('btn--reset');
-      learnedBtn.textContent = 'Сбросить';
+      learnedBtn.textContent = 'Сброс';
     } else {
       learnedBtn.classList.remove('btn--reset');
       learnedBtn.classList.add('btn--learned');
-      learnedBtn.textContent = 'Изучено';
+      learnedBtn.textContent = 'Знаю';
     }
   } else {
     learnedBadge.classList.add('hidden');
     cardEl.classList.remove('card--learned');
     learnedBtn.classList.remove('btn--learned', 'btn--reset');
-    learnedBtn.textContent = 'Изучено';
+    learnedBtn.textContent = 'Знаю';
   }
 }
 
