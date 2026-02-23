@@ -109,6 +109,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: space-between;
 }
 
 .ctrl-list-toggle {
@@ -652,19 +653,6 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-
-/* Reveal */
-.ctrl-reveal {
-  padding: 12px 24px;
-  background: linear-gradient(135deg, rgba(99,102,241,0.25), rgba(129,140,248,0.15));
-  border-color: rgba(129,140,248,0.35);
-}
-
-.ctrl-reveal:hover {
-  background: linear-gradient(135deg, rgba(99,102,241,0.4), rgba(129,140,248,0.3));
-  box-shadow: 0 4px 20px var(--accent-glow);
-  border-color: rgba(129,140,248,0.55);
 }
 
 /* Learned */

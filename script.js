@@ -21,7 +21,6 @@ const cardInner    = document.getElementById('cardInner');
 
 const prevBtn       = document.getElementById('prevBtn');
 const nextBtn       = document.getElementById('nextBtn');
-const revealBtn     = document.getElementById('revealBtn');
 const shuffleBtn    = document.getElementById('shuffleBtn');
 const learnedBtn    = document.getElementById('learnedBtn');
 const speakBtn         = document.getElementById('speakBtn');
@@ -123,7 +122,6 @@ function toggleReveal() {
   if (!state.displayCards.length) return;
   state.answerVisible = !state.answerVisible;
   cardInner.classList.toggle('flipped', state.answerVisible);
-  revealBtn.textContent = state.answerVisible ? 'Скрыть ответ' : 'Показать ответ';
 }
 
 // ---------- Learned ----------
@@ -185,7 +183,6 @@ function render() {
     cardEl.classList.remove('card--learned');
     learnedBtn.classList.remove('btn--learned');
     learnedBtn.textContent = 'Изучено';
-    revealBtn.textContent  = 'Показать ответ';
     return;
   }
 
@@ -201,8 +198,6 @@ function render() {
 
   progress.textContent    = `${state.index + 1} / ${total}`;
   progressBar.style.width = `${((state.index + 1) / total) * 100}%`;
-
-  revealBtn.textContent = state.answerVisible ? 'Скрыть ответ' : 'Показать ответ';
 
   cardInner.classList.toggle('flipped', state.answerVisible);
 
@@ -332,7 +327,6 @@ async function loadCards() {
 prevBtn.addEventListener('click', () => navigate(-1));
 nextBtn.addEventListener('click', () => navigate(1));
 
-revealBtn.addEventListener('click', toggleReveal);
 cardEl.addEventListener('click', (e) => {
   // Don't flip if clicking buttons inside the card (none currently, but safe guard)
   if (e.target.closest('button')) return;
